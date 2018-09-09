@@ -44,6 +44,8 @@ boolean started=false;
 
 void setup()
 {
+    pinMode(7, OUTPUT);
+  
      //Serial connection.
      Serial.begin(9600);
      Serial.println("GSM Shield testing.");
@@ -96,6 +98,13 @@ void loop()
     Serial.print("Velosity: ");
     Serial.println(vel);
     Serial.println("");
+    if (atof(vel) > 0.3) {
+      digitalWrite(7, LOW);
+    } else {
+      Serial.println("HIGH");
+    }
+    
+    digitalWrite(7, HIGH);
 };
 
 void serialhwread()
