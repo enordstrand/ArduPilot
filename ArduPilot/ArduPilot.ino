@@ -72,19 +72,6 @@ void setup()
           else if(stat==3)
                Serial.println("3D FIXED");
           delay(5000);
-          //Get data from GPS
-          gps.getPar(lon,lat,alt,time,vel);
-          Serial.println("a");
-          Serial.println(lon);
-          Serial.println("b");
-          Serial.println(lat);
-          Serial.println("c");
-          Serial.println(alt);
-          Serial.println("d");
-          Serial.println(time);
-          Serial.println("e");
-          Serial.println(vel);
-          Serial.println("f");
      }
 };
 
@@ -95,6 +82,20 @@ void loop()
      serialhwread();
      //Read for new byte on NewSoftSerial.
      serialswread();
+
+    //Get data from GPS
+    gps.getPar(lon,lat,alt,time,vel);
+    Serial.print("Longtitude: ");
+    Serial.println(lon);
+    Serial.print("Latitude: ");
+    Serial.println(lat);
+    Serial.print("Altitude: ");
+    Serial.println(alt);
+    Serial.print("Time: ");
+    Serial.println(time);
+    Serial.print("Velosity: ");
+    Serial.println(vel);
+    Serial.println("");
 };
 
 void serialhwread()
@@ -116,13 +117,6 @@ void serialhwread()
           }
           //Send a saved AT command using serial port.
           if(!strcmp(inSerial,"TEST")) {
-//      Serial.println("BATTERY TEST 1");
-//      gps.getBattInf(msg1,msg2);
-//      Serial.println(msg1);
-//      Serial.println(msg2);
-//      Serial.println("BATTERY TEST 2");
-//      gps.getBattTVol(msg1);
-//      Serial.println(msg1);
                stat=gps.getStat();
                if(stat==1)
                     Serial.println("NOT FIXED");
