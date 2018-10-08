@@ -101,10 +101,8 @@ void loop()
     if (atof(vel) > 0.3) {
       digitalWrite(7, LOW);
     } else {
-      Serial.println("HIGH");
+      digitalWrite(7, HIGH);
     }
-    
-    digitalWrite(7, HIGH);
 };
 
 void serialhwread()
