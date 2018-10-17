@@ -16,6 +16,42 @@
 //#include "call.h"
 #include "gps.h"
 
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+14CORE TEST CODE FOR 
+E18-D80NK Infrared Distance Ranging Sensor 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+ 
+void setup()  {
+ 
+ Serial.begin(9600); //Start serial communication boud rate at 9600
+ pinMode(5,INPUT); //Pin 5 as signal input
+ 
+}
+int counter = 0;
+boolean resetAndReadyToCount = true;
+void loop()  {
+   //delay(100);
+   //Serial.println(resetAndReadyToCount);
+   if(digitalRead(5)==LOW && resetAndReadyToCount)  { 
+    // If no signal print collision detected
+     //Serial.println("Collision Detected.");
+     counter++;
+     resetAndReadyToCount = false;
+     Serial.println(counter);
+   }
+   if (digitalRead(5)==HIGH && !resetAndReadyToCount) {
+    resetAndReadyToCount = true;
+     // If signal detected print collision detected
+     //Serial.println("No Collision Detected.");
+   }
+}
+
+
+/*
 //To change pins for Software Serial, use the two lines in GSM.cpp.
 
 //GSM Shield for Arduino
@@ -149,3 +185,4 @@ void serialswread()
 {
      gsm.SimpleRead();
 }
+*/
