@@ -13,23 +13,30 @@ void setup() {
   pinMode(dirPin,OUTPUT);
 }
 void loop() {
+  // 600 = No go
+  // 700 = 53RPM (sliter litt)
+  // 750 = 49RPM (bråker)
+  // 777 = 48RPM
+  // 800 = 46RPM
+  // 900 = 41RPM
+  int speed = 777;
   digitalWrite(dirPin,HIGH); // Enables the motor to move in a particular direction
   // Makes 200 pulses for making one full cycle rotation
   for(int x = 0; x < 2000; x++) {
     digitalWrite(stepPin,HIGH); 
-    delayMicroseconds(1100); 
+    delayMicroseconds(speed); 
     digitalWrite(stepPin,LOW); 
-    delayMicroseconds(1100); 
+    delayMicroseconds(speed); 
   }
-  delay(1000); // One second delay
-  
-  digitalWrite(dirPin,LOW); //Changes the rotations direction
-  // Makes 400 pulses for making two full cycle rotation
+  delay(500); // One second delay
+
+  digitalWrite(dirPin,LOW); // Enables the motor to move in a particular direction
+  // Makes 200 pulses for making one full cycle rotation
   for(int x = 0; x < 2000; x++) {
-    digitalWrite(stepPin,HIGH);
-    delayMicroseconds(1000);
-    digitalWrite(stepPin,LOW);
-    delayMicroseconds(1000);
+    digitalWrite(stepPin,HIGH); 
+    delayMicroseconds(speed); 
+    digitalWrite(stepPin,LOW); 
+    delayMicroseconds(speed); 
   }
-  delay(1000);
+  delay(500); // One second delay
 }
